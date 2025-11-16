@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWAP335</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #0f0f0f url('https://iili.io/fH72ILJ.md.jpg') center center fixed;
+            background-size: cover;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: -1;
+        }
+
+        .header {
+            background: linear-gradient(90deg, #ff0000 0%, #cc0000 100%);
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(255, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.05) 10px,
+                rgba(255, 255, 255, 0.05) 20px
+            );
+            animation: drift 20s linear infinite;
+        }
+
+        @keyframes drift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .header h1 {
+            font-size: 4em;
+            letter-spacing: 8px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            position: relative;
+            z-index: 1;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+            to { text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 0, 0, 0.5); }
+        }
+
+        .header p {
+            font-size: 1.2em;
+            margin-top: 10px;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 30px 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            border: none;
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .tab-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(255, 0, 0, 0.5);
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+            color: #ff0000;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px;
+            background: rgba(255, 0, 0, 0.1);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .intro h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #ff3333;
+            text-transform: uppercase;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .media-card {
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid #333;
+            cursor: pointer;
+        }
+
+        .media-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 50px rgba(255, 0, 0, 0.4);
+            border-color: #ff0000;
+        }
+
+        .media-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .media-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .media-card video {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .media-info {
+            padding: 25px;
+        }
+
+        .media-info h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #ff3333;
+        }
+
+        .reactions {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .reaction-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 8px 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1em;
+            color: #fff;
+        }
+
+        .reaction-btn:hover {
+            background: rgba(255, 0, 0, 0.2);
+            border-color: rgba(255, 0, 0, 0.5);
+            transform: scale(1.1);
+        }
+
+        .reaction-btn.active {
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            border-color: #ff0000;
+            animation: pulse 0.5s ease;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .reaction-btn .emoji {
+            font-size: 1.3em;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .reaction-btn .count {
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .spec-badge {
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .lightbox video {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .video-controls {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1002;
+        }
+
+        .control-btn {
+            background: rgba(255, 0, 0, 0.8);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 0, 0, 1);
+            transform: scale(1.1);
+        }
+
+        .footer {
+            background: #0f0f0f;
+            padding: 40px 30px;
+            text-align: center;
+            margin-top: 80px;
+            border-top: 3px solid #ff0000;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer p {
+            font-size: 1.1em;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        .contact-section {
+            background: rgba(255, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 0, 0, 0.3);
+            margin-top: 30px;
+        }
+
+        .contact-section h3 {
+            font-size: 1.8em;
+            color: #ff3333;
+            margin-bottom: 15px;
+        }
+
+        .contact-section p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .instagram-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(225, 48, 108, 0.4);
+        }
+
+        .instagram-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(225, 48, 108, 0.6);
+        }
+
+        .instagram-icon {
+            width: 30px;
+            height: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+                letter-spacing: 4px;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .intro h2 {
+                font-size: 1.8em;
+            }
+
+            .tab-button {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>SWAP335</h1>
+        <p>პერფორმანსი • სტილი • ძალა</p>
+    </div>
+
+    <div class="nav-tabs">
+        <button class="tab-button active" onclick="switchTab('photos')">📷 ფოტოები</button>
+        <button class="tab-button" onclick="switchTab('videos')">🎬 ვიდეოები</button>
+    </div>
+
+    <div class="container">
+        <!-- Photos Tab -->
+        <div id="photos" class="tab-content active">
+            <div class="intro">
+                <h2>ფოტო გალერეა</h2>
+                <p>ჩემი მანქანის საუკეთესო მომენტები</p>
+            </div>
+
+            <div class="gallery">
+                <div class="media-card" onclick="openLightbox('photo', 'https://iili.io/fH5py21.jpg')">
+                    <img src="https://iili.io/fH5py21.jpg" alt="SWAP335 ფოტო 1">
+                    <div class="media-info">
+                        <h3>ძირითადი ხედი</h3>
+                        <div class="reactions">
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'photo1', 'like')">
+                                <span class="emoji">❤️</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'photo1', 'fire')">
+                                <span class="emoji">🔥</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'photo1', 'cool')">
+                                <span class="emoji">😎</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'photo1', 'wow')">
+                                <span class="emoji">🤩</span>
+                                <span class="count">0</span>
+                            </button>
+                        </div>
+                        <div class="specs">
+                            <span class="spec-badge">🏁 პერფორმანსი</span>
+                            <span class="spec-badge">⚡ ძალა</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-card" onclick="openLightbox('photo', 'https://iili.io/fH5y9YF.jpg')">
+                    <img src="https://iili.io/fH5y9YF.jpg" alt="SWAP335 ფოტო 2">
+                    <div class="media-info">
+                        <h3>დეტალები</h3>
+                        <div class="reactions">
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'photo2', 'like')">
+                                <span class="emoji">❤️</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'photo2', 'fire')">
+                                <span class="emoji">🔥</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'photo2', 'cool')">
+                                <span class="emoji">😎</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'photo2', 'wow')">
+                                <span class="emoji">🤩</span>
+                                <span class="count">0</span>
+                            </button>
+                        </div>
+                        <div class="specs">
+                            <span class="spec-badge">🎨 დიზაინი</span>
+                            <span class="spec-badge">💎 ხარისხი</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-card" onclick="openLightbox('photo', 'https://iili.io/fH5yHkg.jpg')">
+                    <img src="https://iili.io/fH5yHkg.jpg" alt="SWAP335 ფოტო 3">
+                    <div class="media-info">
+                        <h3>სპორტული სტილი</h3>
+                        <div class="reactions">
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'photo3', 'like')">
+                                <span class="emoji">❤️</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'photo3', 'fire')">
+                                <span class="emoji">🔥</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'photo3', 'cool')">
+                                <span class="emoji">😎</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'photo3', 'wow')">
+                                <span class="emoji">🤩</span>
+                                <span class="count">0</span>
+                            </button>
+                        </div>
+                        <div class="specs">
+                            <span class="spec-badge">🔥 აგრესია</span>
+                            <span class="spec-badge">🚀 სიჩქარე</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-card" onclick="openLightbox('photo', 'https://iili.io/fH5pmrP.jpg')">
+                    <img src="https://iili.io/fH5pmrP.jpg" alt="SWAP335 ფოტო 4">
+                    <div class="media-info">
+                        <h3>პროფილი</h3>
+                        <div class="reactions">
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'photo4', 'like')">
+                                <span class="emoji">❤️</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'photo4', 'fire')">
+                                <span class="emoji">🔥</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'photo4', 'cool')">
+                                <span class="emoji">😎</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'photo4', 'wow')">
+                                <span class="emoji">🤩</span>
+                                <span class="count">0</span>
+                            </button>
+                        </div>
+                        <div class="specs">
+                            <span class="spec-badge">⭐ უნიკალური</span>
+                            <span class="spec-badge">🏆 ექსკლუზიური</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-card" onclick="openLightbox('photo', 'https://iili.io/fH5y2TJ.jpg')">
+                    <img src="https://iili.io/fH5y2TJ.jpg" alt="SWAP335 ფოტო 5">
+                    <div class="media-info">
+                        <h3>სრული სიმძლავრე</h3>
+                        <div class="reactions">
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'photo5', 'like')">
+                                <span class="emoji">❤️</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'photo5', 'fire')">
+                                <span class="emoji">🔥</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'photo5', 'cool')">
+                                <span class="emoji">😎</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'photo5', 'wow')">
+                                <span class="emoji">🤩</span>
+                                <span class="count">0</span>
+                            </button>
+                        </div>
+                        <div class="specs">
+                            <span class="spec-badge">💪 ძლიერი</span>
+                            <span class="spec-badge">🎯 საიმედო</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Videos Tab -->
+        <div id="videos" class="tab-content">
+            <div class="intro">
+                <h2>ვიდეო გალერეა</h2>
+                <p>მოქმედებაში ნახე ჩემი მანქანა</p>
+            </div>
+
+            <div class="gallery">
+                <div class="media-card" onclick="openLightbox('video', 'https://player.vimeo.com/video/1137361209')">
+                    <iframe src="https://player.vimeo.com/video/1137361209?background=1" frameborder="0" style="width:100%;height:300px;"></iframe>
+                    <div class="media-info">
+                        <h3>ვიდეო 1</h3>
+                        <div class="reactions">
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'video1', 'like')">
+                                <span class="emoji">❤️</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'video1', 'fire')">
+                                <span class="emoji">🔥</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'video1', 'cool')">
+                                <span class="emoji">😎</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'video1', 'wow')">
+                                <span class="emoji">🤩</span>
+                                <span class="count">0</span>
+                            </button>
+                        </div>
+                        <div class="specs">
+                            <span class="spec-badge">🎬 SWAP335</span>
+                            <span class="spec-badge">🔥 Action</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-card" onclick="openLightbox('video', 'https://player.vimeo.com/video/1137361222')">
+                    <iframe src="https://player.vimeo.com/video/1137361222?background=1" frameborder="0" style="width:100%;height:300px;"></iframe>
+                    <div class="media-info">
+                        <h3>ვიდეო 2</h3>
+                        <div class="reactions">
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'video2', 'like')">
+                                <span class="emoji">❤️</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'video2', 'fire')">
+                                <span class="emoji">🔥</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'video2', 'cool')">
+                                <span class="emoji">😎</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'video2', 'wow')">
+                                <span class="emoji">🤩</span>
+                                <span class="count">0</span>
+                            </button>
+                        </div>
+                        <div class="specs">
+                            <span class="spec-badge">🎬 SWAP335</span>
+                            <span class="spec-badge">⚡ Power</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-card" onclick="openLightbox('video', 'https://player.vimeo.com/video/1137361236')">
+                    <iframe src="https://player.vimeo.com/video/1137361236?background=1" frameborder="0" style="width:100%;height:300px;"></iframe>
+                    <div class="media-info">
+                        <h3>ვიდეო 3</h3>
+                        <div class="reactions">
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'video3', 'like')">
+                                <span class="emoji">❤️</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'video3', 'fire')">
+                                <span class="emoji">🔥</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'video3', 'cool')">
+                                <span class="emoji">😎</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'video3', 'wow')">
+                                <span class="emoji">🤩</span>
+                                <span class="count">0</span>
+                            </button>
+                        </div>
+                        <div class="specs">
+                            <span class="spec-badge">🎬 SWAP335</span>
+                            <span class="spec-badge">🚀 Speed</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-card" onclick="openLightbox('video', 'https://player.vimeo.com/video/1137361225')">
+                    <iframe src="https://player.vimeo.com/video/1137361225?background=1" frameborder="0" style="width:100%;height:300px;"></iframe>
+                    <div class="media-info">
+                        <h3>ვიდეო 4</h3>
+                        <div class="reactions">
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'video4', 'like')">
+                                <span class="emoji">❤️</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'video4', 'fire')">
+                                <span class="emoji">🔥</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'video4', 'cool')">
+                                <span class="emoji">😎</span>
+                                <span class="count">0</span>
+                            </button>
+                            <button class="reaction-btn" onclick="event.stopPropagation(); toggleReaction(this, 'video4', 'wow')">
+                                <span class="emoji">🤩</span>
+                                <span class="count">0</span>
+                            </button>
+                        </div>
+                        <div class="specs">
+                            <span class="spec-badge">🎬 SWAP335</span>
+                            <span class="spec-badge">💨 Drift</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-content">
+            <p>SWAP335 © 2025 | Made with ❤️ for Speed</p>
+            
+            <div class="contact-section">
+                <h3>🌟 მსგავსი საიტის გაკეთება გსურთ?</h3>
+                <p>თუ გსურთ თქვენთვის ასეთი საიტის შექმნა, შემეხმიანეთ ინსტაგრამზე!</p>
+                <a href="https://www.instagram.com/nika_kaxurashviili/" target="_blank" class="instagram-link">
+                    <svg class="instagram-icon" viewBox="0 0 24 24" fill="white">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                    @nika_kaxurashviili
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <img id="lightbox-img" src="" alt="Full size" style="display:none;">
+            <video id="lightbox-video" controls style="display:none;">
+                <source src="" type="video/mp4">
+            </video>
+            <div class="video-controls" id="video-controls" style="display:none;">
+                <button class="control-btn" onclick="toggleMute()">🔊 ხმის ჩართვა/გამორთვა</button>
+                <button class="control-btn" onclick="togglePlay()">▶️ დაკვრა/პაუზა</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Reaction system
+        const reactions = {};
+
+        function toggleReaction(button, itemId, reactionType) {
+            const countElement = button.querySelector('.count');
+            let count = parseInt(countElement.textContent);
+            const reactionKey = itemId + '-' + reactionType;
+            
+            if (button.classList.contains('active')) {
+                button.classList.remove('active');
+                count--;
+                reactions[reactionKey] = false;
+            } else {
+                button.classList.add('active');
+                count++;
+                reactions[reactionKey] = true;
+            }
+            
+            countElement.textContent = count;
+        }
+
+        function switchTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-button');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function openLightbox(type, src) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            const video = document.getElementById('lightbox-video');
+            const controls = document.getElementById('video-controls');
+            
+            lightbox.classList.add('active');
+            
+            if (type === 'photo') {
+                img.src = src;
+                img.style.display = 'block';
+                video.style.display = 'none';
+                controls.style.display = 'none';
+            } else {
+                // For Vimeo videos, create iframe
+                const iframe = document.createElement('iframe');
+                iframe.src = src + '?autoplay=1';
+                iframe.style.width = '90vw';
+                iframe.style.height = '90vh';
+                iframe.style.maxWidth = '1200px';
+                iframe.style.border = 'none';
+                iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+                
+                const container = document.querySelector('.lightbox-content');
+                container.innerHTML = '<span class="lightbox-close" onclick="closeLightbox()">&times;</span>';
+                container.appendChild(iframe);
+            }
+        }
+
+        function closeLightbox(event) {
+            if (event) event.stopPropagation();
+            const lightbox = document.getElementById('lightbox');
+            const container = document.querySelector('.lightbox-content');
+            
+            lightbox.classList.remove('active');
+            
+            // Reset content
+            setTimeout(() => {
+                container.innerHTML = `
+                    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+                    <img id="lightbox-img" src="" alt="Full size" style="display:none;">
+                    <video id="lightbox-video" controls style="display:none;">
+                        <source src="" type="video/mp4">
+                    </video>
+                    <div class="video-controls" id="video-controls" style="display:none;">
+                        <button class="control-btn" onclick="toggleMute()">🔊 ხმის ჩართვა/გამორთვა</button>
+                        <button class="control-btn" onclick="togglePlay()">▶️ დაკვრა/პაუზა</button>
+                    </div>
+                `;
+            }, 300);
+        }
+
+        function toggleMute() {
+            const video = document.getElementById('lightbox-video');
+            video.muted = !video.muted;
+        }
+
+        function togglePlay() {
+            const video = document.getElementById('lightbox-video');
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+
+        // Close lightbox with ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
