@@ -752,8 +752,24 @@
     </div>
 
     <script>
-        // Reaction system
-        const reactions = {};
+        // Reaction system with localStorage
+        const reactions = JSON.parse(localStorage.getItem('swap335-reactions')) || {};
+
+        // Load saved reactions on page load
+        function loadReactions() {
+            Object.keys(reactions).forEach(key => {
+                const [itemId, reactionType] = key.split('-');
+                const buttons = document.querySelectorAll(`button[onclick*="${itemId}"][onclick*="${reactionType}"]`);
+                
+                buttons.forEach(button => {
+                    const countElement = button.querySelector('.count');
+                    if (reactions[key]) {
+                        button.classList.add('active');
+                        countElement.textContent = reactions[key].count;
+                    }
+                });
+            });
+        }
 
         function toggleReaction(button, itemId, reactionType) {
             const countElement = button.querySelector('.count');
@@ -763,15 +779,25 @@
             if (button.classList.contains('active')) {
                 button.classList.remove('active');
                 count--;
-                reactions[reactionKey] = false;
+                if (count === 0) {
+                    delete reactions[reactionKey];
+                } else {
+                    reactions[reactionKey] = { count: count, active: false };
+                }
             } else {
                 button.classList.add('active');
                 count++;
-                reactions[reactionKey] = true;
+                reactions[reactionKey] = { count: count, active: true };
             }
             
             countElement.textContent = count;
+            
+            // Save to localStorage
+            localStorage.setItem('swap335-reactions', JSON.stringify(reactions));
         }
+
+        // Load reactions when page loads
+        window.addEventListener('DOMContentLoaded', loadReactions);
 
         function switchTab(tabName) {
             const tabs = document.querySelectorAll('.tab-content');
