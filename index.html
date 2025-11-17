@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SWAP335</title>
+    <title>SWAP335 | BMW E92 M3</title>
     <style>
         * {
             margin: 0;
@@ -12,10 +12,9 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: #0f0f0f url('https://iili.io/fH72ILJ.md.jpg') center center fixed;
-            background-size: cover;
-            color: #fff;
+            font-family: 'BMW Helvetica', 'Helvetica Neue', Arial, sans-serif;
+            background: #fff;
+            color: #262626;
             overflow-x: hidden;
             position: relative;
         }
@@ -27,256 +26,365 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
+            background: url('https://iili.io/fJ2seea.jpg') center center fixed;
+            background-size: cover;
+            opacity: 0.15;
             z-index: -1;
         }
 
-        .header {
-            background: linear-gradient(90deg, #ff0000 0%, #cc0000 100%);
-            padding: 30px 20px;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(255, 0, 0, 0.3);
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .bmw-logo {
+            width: 50px;
+            height: 50px;
+        }
+
+        .site-title {
+            font-size: 1.8em;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: #1c69d4;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #262626;
+            font-size: 0.95em;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #1c69d4;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
             position: relative;
             overflow: hidden;
+            margin-top: 0;
         }
 
-        .header::before {
-            content: '';
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.9);
+        }
+
+        .hero-overlay {
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(255, 255, 255, 0.05) 10px,
-                rgba(255, 255, 255, 0.05) 20px
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.3) 0%,
+                rgba(0, 0, 0, 0.1) 50%,
+                rgba(0, 0, 0, 0.4) 100%
             );
-            animation: drift 20s linear infinite;
         }
 
-        @keyframes drift {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        .header h1 {
-            font-size: 4em;
-            letter-spacing: 8px;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            position: relative;
-            z-index: 1;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
-            to { text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 0, 0, 0.5); }
-        }
-
-        .header p {
-            font-size: 1.2em;
-            margin-top: 10px;
-            letter-spacing: 2px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .nav-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 30px 20px;
-            flex-wrap: wrap;
-        }
-
-        .tab-button {
-            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
-            border: none;
+        .hero-content {
+            position: absolute;
+            bottom: 100px;
+            left: 50px;
             color: white;
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            font-size: 4em;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.3em;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
             padding: 15px 40px;
-            font-size: 1.2em;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
+            background: #1c69d4;
+            color: white;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: 500;
+            border-radius: 0;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: #0a4a9e;
+            transform: translateX(5px);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            display: flex;
+            justify-content: space-around;
+            padding: 80px 50px;
+            background: #f5f5f5;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3.5em;
+            font-weight: 300;
+            color: #1c69d4;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            color: #666;
+            font-weight: 300;
             letter-spacing: 1px;
         }
 
-        .tab-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(255, 0, 0, 0.5);
+        /* Gallery Section */
+        .section {
+            padding: 100px 50px;
         }
 
-        .tab-button.active {
-            background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
-            color: #ff0000;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto 50px;
-            padding: 0 20px;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .intro {
-            text-align: center;
-            margin-bottom: 60px;
-            padding: 40px;
-            background: rgba(255, 0, 0, 0.1);
-            border-radius: 20px;
-            border: 2px solid rgba(255, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
-        .intro h2 {
+        .section-title {
             font-size: 2.5em;
-            margin-bottom: 20px;
-            color: #ff3333;
-            text-transform: uppercase;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 60px;
+            text-align: center;
+            color: #262626;
         }
 
-        .gallery {
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 16/10;
+            cursor: pointer;
+            background: #000;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            opacity: 0.8;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay h3 {
+            font-size: 1.5em;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .gallery-overlay p {
+            font-size: 0.95em;
+            font-weight: 300;
+        }
+
+        /* Video Section */
+        .video-section {
+            background: #000;
+            color: white;
+            padding: 100px 50px;
+        }
+
+        .video-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
-            margin-bottom: 50px;
         }
 
-        .media-card {
-            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
-            border-radius: 20px;
+        .video-card {
+            position: relative;
+            aspect-ratio: 16/9;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 2px solid #333;
             cursor: pointer;
+            background: #1a1a1a;
         }
 
-        .media-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 50px rgba(255, 0, 0, 0.4);
-            border-color: #ff0000;
-        }
-
-        .media-card img {
+        .video-card iframe {
             width: 100%;
-            height: 300px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+            height: 100%;
+            border: none;
         }
 
-        .media-card:hover img {
-            transform: scale(1.1);
-        }
-
-        .media-card video {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-
-        .media-info {
-            padding: 25px;
-        }
-
-        .media-info h3 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            color: #ff3333;
-        }
-
-        .reactions {
+        /* Reactions Section */
+        .reactions-display {
             display: flex;
             gap: 15px;
             margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
         }
 
-        .reaction-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 8px 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .reaction-badge {
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 1em;
-            color: #fff;
-        }
-
-        .reaction-btn:hover {
-            background: rgba(255, 0, 0, 0.2);
-            border-color: rgba(255, 0, 0, 0.5);
-            transform: scale(1.1);
-        }
-
-        .reaction-btn.active {
-            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
-            border-color: #ff0000;
-            animation: pulse 0.5s ease;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        .reaction-btn .emoji {
-            font-size: 1.3em;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-        }
-
-        .reaction-btn .count {
-            font-weight: bold;
-            font-size: 0.9em;
-        }
-
-        .specs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .spec-badge {
-            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
-            padding: 8px 15px;
+            padding: 8px 16px;
+            background: rgba(28, 105, 212, 0.1);
+            border: 1px solid rgba(28, 105, 212, 0.2);
             border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
+        .reaction-badge:hover {
+            background: rgba(28, 105, 212, 0.2);
+            border-color: rgba(28, 105, 212, 0.4);
+        }
+
+        .reaction-badge.active {
+            background: #1c69d4;
+            border-color: #1c69d4;
+            color: white;
+        }
+
+        .reaction-emoji {
+            font-size: 1.2em;
+        }
+
+        .reaction-count {
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        /* Footer */
+        .footer {
+            background: #262626;
+            color: white;
+            padding: 80px 50px 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2em;
+            font-weight: 400;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #999;
+            text-decoration: none;
+            font-size: 0.95em;
+            line-height: 1.8;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #1c69d4;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        .instagram-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .instagram-link:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Lightbox */
         .lightbox {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            right: 0;
+            bottom: 0;
             background: rgba(0, 0, 0, 0.95);
-            z-index: 1000;
+            z-index: 2000;
             justify-content: center;
             align-items: center;
             cursor: pointer;
@@ -287,18 +395,12 @@
         }
 
         .lightbox-content {
-            position: relative;
             max-width: 90%;
             max-height: 90%;
+            position: relative;
         }
 
-        .lightbox img {
-            max-width: 100%;
-            max-height: 90vh;
-            object-fit: contain;
-        }
-
-        .lightbox video {
+        .lightbox-content img {
             max-width: 100%;
             max-height: 90vh;
             object-fit: contain;
@@ -310,629 +412,459 @@
             right: 0;
             color: white;
             font-size: 40px;
-            font-weight: bold;
             cursor: pointer;
-            z-index: 1001;
-        }
-
-        .video-controls {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 15px;
-            z-index: 1002;
-        }
-
-        .control-btn {
-            background: rgba(255, 0, 0, 0.8);
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .control-btn:hover {
-            background: rgba(255, 0, 0, 1);
-            transform: scale(1.1);
-        }
-
-        .footer {
-            background: #0f0f0f;
-            padding: 40px 30px;
-            text-align: center;
-            margin-top: 80px;
-            border-top: 3px solid #ff0000;
-        }
-
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .footer p {
-            font-size: 1.1em;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-        }
-
-        .contact-section {
-            background: rgba(255, 0, 0, 0.1);
-            padding: 30px;
-            border-radius: 20px;
-            border: 2px solid rgba(255, 0, 0, 0.3);
-            margin-top: 30px;
-        }
-
-        .contact-section h3 {
-            font-size: 1.8em;
-            color: #ff3333;
-            margin-bottom: 15px;
-        }
-
-        .contact-section p {
-            font-size: 1.1em;
-            margin-bottom: 20px;
-        }
-
-        .instagram-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            padding: 15px 35px;
-            border-radius: 30px;
-            text-decoration: none;
-            color: white;
-            font-size: 1.2em;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(225, 48, 108, 0.4);
-        }
-
-        .instagram-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(225, 48, 108, 0.6);
-        }
-
-        .instagram-icon {
-            width: 30px;
-            height: 30px;
         }
 
         @media (max-width: 768px) {
-            .header h1 {
+            .nav {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content {
+                left: 20px;
+                right: 20px;
+                bottom: 50px;
+            }
+
+            .hero-content h1 {
                 font-size: 2.5em;
-                letter-spacing: 4px;
             }
 
-            .gallery {
+            .section {
+                padding: 60px 20px;
+            }
+
+            .gallery-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .intro h2 {
-                font-size: 1.8em;
-            }
-
-            .tab-button {
-                padding: 12px 25px;
-                font-size: 1em;
             }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>SWAP335</h1>
-        <p>პერფორმანსი • სტილი • ძალა</p>
-    </div>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="logo-container">
+            <svg class="bmw-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="48" fill="none" stroke="#000" stroke-width="2"/>
+                <circle cx="50" cy="50" r="44" fill="none" stroke="#fff" stroke-width="1"/>
+                <path d="M 50 50 L 50 6 A 44 44 0 0 1 94 50 Z" fill="#1c69d4"/>
+                <path d="M 50 50 L 94 50 A 44 44 0 0 1 50 94 Z" fill="#fff"/>
+                <path d="M 50 50 L 50 94 A 44 44 0 0 1 6 50 Z" fill="#1c69d4"/>
+                <path d="M 50 50 L 6 50 A 44 44 0 0 1 50 6 Z" fill="#fff"/>
+                <circle cx="50" cy="50" r="12" fill="#000"/>
+            </svg>
+            <div class="site-title">SWAP335</div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#gallery">გალერეა</a></li>
+            <li><a href="#videos">ვიდეოები</a></li>
+            <li><a href="#specs">სპეციფიკაციები</a></li>
+            <li><a href="#contact">კონტაქტი</a></li>
+        </ul>
+    </nav>
 
-    <div class="nav-tabs">
-        <button class="tab-button active" onclick="switchTab('photos')">📷 ფოტოები</button>
-        <button class="tab-button" onclick="switchTab('videos')">🎬 ვიდეოები</button>
-    </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="https://iili.io/fJ2seea.jpg" alt="BMW E92 335i SWAP335" class="hero-image">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>BMW E92 335i<br>SWAP335</h1>
+            <p>Twin-Turbo Inline-6. უბრალოდ სრულყოფილება.</p>
+            <a href="#gallery" class="cta-button">გალერეის ნახვა →</a>
+        </div>
+    </section>
 
-    <div class="container">
-        <!-- Photos Tab -->
-        <div id="photos" class="tab-content active">
-            <div class="intro">
-                <h2>ფოტო გალერეა</h2>
-                <p>ჩემი მანქანის საუკეთესო მომენტები</p>
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stat-item">
+            <div class="stat-number">302</div>
+            <div class="stat-label">ცხენის ძალა</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">V6</div>
+            <div class="stat-label">ძრავის ტიპი</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">3.0L</div>
+            <div class="stat-label">მოცულობა</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">Petrol</div>
+            <div class="stat-label">საწვავი</div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section">
+        <h2 class="section-title">ფოტო გალერეა</h2>
+        
+        <h3 style="font-size: 1.8em; font-weight: 300; margin-bottom: 30px; color: #1c69d4; text-align: center;">🚗 ექსტერიერი</h3>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox('https://iili.io/fJ2sO5g.jpg')">
+                <img src="https://iili.io/fJ2sO5g.jpg" alt="SWAP335 Front View">
+                <div class="gallery-overlay">
+                    <h3>წინა ხედი</h3>
+                    <p>აგრესიული E92 დიზაინი</p>
+                </div>
+                <div class="reactions-display">
+                    <div class="reaction-badge" data-item="photo1" data-reaction="like" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo1', 'like')">
+                        <span class="reaction-emoji">❤️</span>
+                        <span class="reaction-count">0</span>
+                    </div>
+                    <div class="reaction-badge" data-item="photo1" data-reaction="fire" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo1', 'fire')">
+                        <span class="reaction-emoji">🔥</span>
+                        <span class="reaction-count">0</span>
+                    </div>
+                    <div class="reaction-badge" data-item="photo1" data-reaction="cool" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo1', 'cool')">
+                        <span class="reaction-emoji">😎</span>
+                        <span class="reaction-count">0</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="gallery">
-                <div class="media-card" onclick="openLightbox('photo', 'https://iili.io/fH5py21.jpg')">
-                    <img src="https://iili.io/fH5py21.jpg" alt="SWAP335 ფოტო 1">
-                    <div class="media-info">
-                        <h3>ძირითადი ხედი</h3>
-                        <div class="reactions">
-                            <button class="reaction-btn" data-item="photo1" data-reaction="like" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo1', 'like')">
-                                <span class="emoji">❤️</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="photo1" data-reaction="fire" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo1', 'fire')">
-                                <span class="emoji">🔥</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="photo1" data-reaction="cool" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo1', 'cool')">
-                                <span class="emoji">😎</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="photo1" data-reaction="wow" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo1', 'wow')">
-                                <span class="emoji">🤩</span>
-                                <span class="count">0</span>
-                            </button>
-                        </div>
-                        <div class="specs">
-                            <span class="spec-badge">🏁 პერფორმანსი</span>
-                            <span class="spec-badge">⚡ ძალა</span>
-                        </div>
+            <div class="gallery-item" onclick="openLightbox('https://iili.io/fJ2seea.jpg')">
+                <img src="https://iili.io/fJ2seea.jpg" alt="SWAP335 Side Profile">
+                <div class="gallery-overlay">
+                    <h3>გვერდიდან პროფილი</h3>
+                    <p>კლასიკური coupe სილუეტი</p>
+                </div>
+                <div class="reactions-display">
+                    <div class="reaction-badge" data-item="photo2" data-reaction="like" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo2', 'like')">
+                        <span class="reaction-emoji">❤️</span>
+                        <span class="reaction-count">0</span>
+                    </div>
+                    <div class="reaction-badge" data-item="photo2" data-reaction="fire" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo2', 'fire')">
+                        <span class="reaction-emoji">🔥</span>
+                        <span class="reaction-count">0</span>
+                    </div>
+                    <div class="reaction-badge" data-item="photo2" data-reaction="cool" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo2', 'cool')">
+                        <span class="reaction-emoji">😎</span>
+                        <span class="reaction-count">0</span>
                     </div>
                 </div>
+            </div>
 
-                <div class="media-card" onclick="openLightbox('photo', 'https://iili.io/fH5y9YF.jpg')">
-                    <img src="https://iili.io/fH5y9YF.jpg" alt="SWAP335 ფოტო 2">
-                    <div class="media-info">
-                        <h3>დეტალები</h3>
-                        <div class="reactions">
-                            <button class="reaction-btn" data-item="photo2" data-reaction="like" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo2', 'like')">
-                                <span class="emoji">❤️</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="photo2" data-reaction="fire" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo2', 'fire')">
-                                <span class="emoji">🔥</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="photo2" data-reaction="cool" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo2', 'cool')">
-                                <span class="emoji">😎</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="photo2" data-reaction="wow" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo2', 'wow')">
-                                <span class="emoji">🤩</span>
-                                <span class="count">0</span>
-                            </button>
-                        </div>
-                        <div class="specs">
-                            <span class="spec-badge">🎨 დიზაინი</span>
-                            <span class="spec-badge">💎 ხარისხი</span>
-                        </div>
+            <div class="gallery-item" onclick="openLightbox('https://iili.io/fJ2sNdF.jpg')">
+                <img src="https://iili.io/fJ2sNdF.jpg" alt="SWAP335 Exterior Detail">
+                <div class="gallery-overlay">
+                    <h3>დეტალები</h3>
+                    <p>335i სპორტული აქცენტები</p>
+                </div>
+                <div class="reactions-display">
+                    <div class="reaction-badge" data-item="photo3" data-reaction="like" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo3', 'like')">
+                        <span class="reaction-emoji">❤️</span>
+                        <span class="reaction-count">0</span>
+                    </div>
+                    <div class="reaction-badge" data-item="photo3" data-reaction="fire" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo3', 'fire')">
+                        <span class="reaction-emoji">🔥</span>
+                        <span class="reaction-count">0</span>
+                    </div>
+                    <div class="reaction-badge" data-item="photo3" data-reaction="cool" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo3', 'cool')">
+                        <span class="reaction-emoji">😎</span>
+                        <span class="reaction-count">0</span>
                     </div>
                 </div>
+            </div>
 
-                <div class="media-card" onclick="openLightbox('photo', 'https://iili.io/fH5yHkg.jpg')">
-                    <img src="https://iili.io/fH5yHkg.jpg" alt="SWAP335 ფოტო 3">
-                    <div class="media-info">
-                        <h3>სპორტული სტილი</h3>
-                        <div class="reactions">
-                            <button class="reaction-btn" data-item="photo3" data-reaction="like" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo3', 'like')">
-                                <span class="emoji">❤️</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="photo3" data-reaction="fire" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo3', 'fire')">
-                                <span class="emoji">🔥</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="photo3" data-reaction="cool" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo3', 'cool')">
-                                <span class="emoji">😎</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="photo3" data-reaction="wow" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo3', 'wow')">
-                                <span class="emoji">🤩</span>
-                                <span class="count">0</span>
-                            </button>
-                        </div>
-                        <div class="specs">
-                            <span class="spec-badge">🔥 აგრესია</span>
-                            <span class="spec-badge">🚀 სიჩქარე</span>
-                        </div>
+            <div class="gallery-item" onclick="openLightbox('https://iili.io/fJ2Z9Re.jpg')">
+                <img src="https://iili.io/fJ2Z9Re.jpg" alt="SWAP335 Exterior 4">
+                <div class="gallery-overlay">
+                    <h3>სპორტული სტილი</h3>
+                    <p>ძლიერი და ელეგანტური</p>
+                </div>
+                <div class="reactions-display">
+                    <div class="reaction-badge" data-item="photo4" data-reaction="like" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo4', 'like')">
+                        <span class="reaction-emoji">❤️</span>
+                        <span class="reaction-count">0</span>
+                    </div>
+                    <div class="reaction-badge" data-item="photo4" data-reaction="fire" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo4', 'fire')">
+                        <span class="reaction-emoji">🔥</span>
+                        <span class="reaction-count">0</span>
+                    </div>
+                    <div class="reaction-badge" data-item="photo4" data-reaction="cool" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo4', 'cool')">
+                        <span class="reaction-emoji">😎</span>
+                        <span class="reaction-count">0</span>
                     </div>
                 </div>
+            </div>
 
-                <div class="media-card" onclick="openLightbox('photo', 'https://iili.io/fH5pmrP.jpg')">
-                    <img src="https://iili.io/fH5pmrP.jpg" alt="SWAP335 ფოტო 4">
-                    <div class="media-info">
-                        <h3>პროფილი</h3>
-                        <div class="reactions">
-                            <button class="reaction-btn" data-item="photo4" data-reaction="like" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo4', 'like')">
-                                <span class="emoji">❤️</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="photo4" data-reaction="fire" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo4', 'fire')">
-                                <span class="emoji">🔥</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="photo4" data-reaction="cool" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo4', 'cool')">
-                                <span class="emoji">😎</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="photo4" data-reaction="wow" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo4', 'wow')">
-                                <span class="emoji">🤩</span>
-                                <span class="count">0</span>
-                            </button>
-                        </div>
-                        <div class="specs">
-                            <span class="spec-badge">⭐ უნიკალური</span>
-                            <span class="spec-badge">🏆 ექსკლუზიური</span>
-                        </div>
+            <div class="gallery-item" onclick="openLightbox('https://iili.io/fJ2QmU7.jpg')">
+                <img src="https://iili.io/fJ2QmU7.jpg" alt="SWAP335 Exterior 5">
+                <div class="gallery-overlay">
+                    <h3>მძლავრი პრეზენტაცია</h3>
+                    <p>BMW საუკეთესო პროფილი</p>
+                </div>
+                <div class="reactions-display">
+                    <div class="reaction-badge" data-item="photo5" data-reaction="like" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo5', 'like')">
+                        <span class="reaction-emoji">❤️</span>
+                        <span class="reaction-count">0</span>
+                    </div>
+                    <div class="reaction-badge" data-item="photo5" data-reaction="fire" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo5', 'fire')">
+                        <span class="reaction-emoji">🔥</span>
+                        <span class="reaction-count">0</span>
+                    </div>
+                    <div class="reaction-badge" data-item="photo5" data-reaction="cool" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo5', 'cool')">
+                        <span class="reaction-emoji">😎</span>
+                        <span class="reaction-count">0</span>
                     </div>
                 </div>
+            </div>
 
-                <div class="media-card" onclick="openLightbox('photo', 'https://iili.io/fH5y2TJ.jpg')">
-                    <img src="https://iili.io/fH5y2TJ.jpg" alt="SWAP335 ფოტო 5">
-                    <div class="media-info">
-                        <h3>სრული სიმძლავრე</h3>
-                        <div class="reactions">
-                            <button class="reaction-btn" data-item="photo5" data-reaction="like" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo5', 'like')">
-                                <span class="emoji">❤️</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="photo5" data-reaction="fire" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo5', 'fire')">
-                                <span class="emoji">🔥</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="photo5" data-reaction="cool" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo5', 'cool')">
-                                <span class="emoji">😎</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="photo5" data-reaction="wow" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo5', 'wow')">
-                                <span class="emoji">🤩</span>
-                                <span class="count">0</span>
-                            </button>
-                        </div>
-                        <div class="specs">
-                            <span class="spec-badge">💪 ძლიერი</span>
-                            <span class="spec-badge">🎯 საიმედო</span>
-                        </div>
+            <div class="gallery-item" onclick="openLightbox('https://iili.io/fJ2QyJ9.jpg')">
+                <img src="https://iili.io/fJ2QyJ9.jpg" alt="SWAP335 Exterior 6">
+                <div class="gallery-overlay">
+                    <h3>ფინალური შტრიხი</h3>
+                    <p>სრულყოფილება დეტალებში</p>
+                </div>
+                <div class="reactions-display">
+                    <div class="reaction-badge" data-item="photo6" data-reaction="like" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo6', 'like')">
+                        <span class="reaction-emoji">❤️</span>
+                        <span class="reaction-count">0</span>
+                    </div>
+                    <div class="reaction-badge" data-item="photo6" data-reaction="fire" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo6', 'fire')">
+                        <span class="reaction-emoji">🔥</span>
+                        <span class="reaction-count">0</span>
+                    </div>
+                    <div class="reaction-badge" data-item="photo6" data-reaction="cool" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'photo6', 'cool')">
+                        <span class="reaction-emoji">😎</span>
+                        <span class="reaction-count">0</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Videos Tab -->
-        <div id="videos" class="tab-content">
-            <div class="intro">
-                <h2>ვიდეო გალერეა</h2>
-                <p>მოქმედებაში ნახე ჩემი მანქანა</p>
+        <h3 style="font-size: 1.8em; font-weight: 300; margin: 80px 0 30px; color: #1c69d4; text-align: center;">🏁 ინტერიერი</h3>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox('https://iili.io/fJ2Qctj.jpg')">
+                <img src="https://iili.io/fJ2Qctj.jpg" alt="SWAP335 Interior 1">
+                <div class="gallery-overlay">
+                    <h3>მძღოლის ადგილი</h3>
+                    <p>სპორტული კოკპიტი</p>
+                </div>
+                <div class="reactions-display">
+                    <div class="reaction-badge" data-item="interior1" data-reaction="like" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'interior1', 'like')">
+                        <span class="reaction-emoji">❤️</span>
+                        <span class="reaction-count">0</span>
+                    </div>
+                    <div class="reaction-badge" data-item="interior1" data-reaction="fire" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'interior1', 'fire')">
+                        <span class="reaction-emoji">🔥</span>
+                        <span class="reaction-count">0</span>
+                    </div>
+                    <div class="reaction-badge" data-item="interior1" data-reaction="cool" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'interior1', 'cool')">
+                        <span class="reaction-emoji">😎</span>
+                        <span class="reaction-count">0</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="gallery">
-                <div class="media-card" onclick="openLightbox('video', 'https://player.vimeo.com/video/1137361209')">
-                    <iframe src="https://player.vimeo.com/video/1137361209?background=1" frameborder="0" style="width:100%;height:300px;"></iframe>
-                    <div class="media-info">
-                        <h3>ვიდეო 1</h3>
-                        <div class="reactions">
-                            <button class="reaction-btn" data-item="video1" data-reaction="like" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'video1', 'like')">
-                                <span class="emoji">❤️</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="video1" data-reaction="fire" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'video1', 'fire')">
-                                <span class="emoji">🔥</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="video1" data-reaction="cool" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'video1', 'cool')">
-                                <span class="emoji">😎</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="video1" data-reaction="wow" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'video1', 'wow')">
-                                <span class="emoji">🤩</span>
-                                <span class="count">0</span>
-                            </button>
-                        </div>
-                        <div class="specs">
-                            <span class="spec-badge">🎬 SWAP335</span>
-                            <span class="spec-badge">🔥 Action</span>
-                        </div>
-                    </div>
+            <div class="gallery-item" onclick="openLightbox('https://iili.io/fJ2Qawb.jpg')">
+                <img src="https://iili.io/fJ2Qawb.jpg" alt="SWAP335 Interior 2">
+                <div class="gallery-overlay">
+                    <h3>BMW დიზაინი</h3>
+                    <p>პრემიუმ ხარისხი</p>
                 </div>
-
-                <div class="media-card" onclick="openLightbox('video', 'https://player.vimeo.com/video/1137361222')">
-                    <iframe src="https://player.vimeo.com/video/1137361222?background=1" frameborder="0" style="width:100%;height:300px;"></iframe>
-                    <div class="media-info">
-                        <h3>ვიდეო 2</h3>
-                        <div class="reactions">
-                            <button class="reaction-btn" data-item="video2" data-reaction="like" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'video2', 'like')">
-                                <span class="emoji">❤️</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="video2" data-reaction="fire" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'video2', 'fire')">
-                                <span class="emoji">🔥</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="video2" data-reaction="cool" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'video2', 'cool')">
-                                <span class="emoji">😎</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="video2" data-reaction="wow" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'video2', 'wow')">
-                                <span class="emoji">🤩</span>
-                                <span class="count">0</span>
-                            </button>
-                        </div>
-                        <div class="specs">
-                            <span class="spec-badge">🎬 SWAP335</span>
-                            <span class="spec-badge">⚡ Power</span>
-                        </div>
+                <div class="reactions-display">
+                    <div class="reaction-badge" data-item="interior2" data-reaction="like" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'interior2', 'like')">
+                        <span class="reaction-emoji">❤️</span>
+                        <span class="reaction-count">0</span>
                     </div>
-                </div>
-
-                <div class="media-card" onclick="openLightbox('video', 'https://player.vimeo.com/video/1137361236')">
-                    <iframe src="https://player.vimeo.com/video/1137361236?background=1" frameborder="0" style="width:100%;height:300px;"></iframe>
-                    <div class="media-info">
-                        <h3>ვიდეო 3</h3>
-                        <div class="reactions">
-                            <button class="reaction-btn" data-item="video3" data-reaction="like" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'video3', 'like')">
-                                <span class="emoji">❤️</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="video3" data-reaction="fire" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'video3', 'fire')">
-                                <span class="emoji">🔥</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="video3" data-reaction="cool" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'video3', 'cool')">
-                                <span class="emoji">😎</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="video3" data-reaction="wow" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'video3', 'wow')">
-                                <span class="emoji">🤩</span>
-                                <span class="count">0</span>
-                            </button>
-                        </div>
-                        <div class="specs">
-                            <span class="spec-badge">🎬 SWAP335</span>
-                            <span class="spec-badge">🚀 Speed</span>
-                        </div>
+                    <div class="reaction-badge" data-item="interior2" data-reaction="fire" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'interior2', 'fire')">
+                        <span class="reaction-emoji">🔥</span>
+                        <span class="reaction-count">0</span>
                     </div>
-                </div>
-
-                <div class="media-card" onclick="openLightbox('video', 'https://player.vimeo.com/video/1137361225')">
-                    <iframe src="https://player.vimeo.com/video/1137361225?background=1" frameborder="0" style="width:100%;height:300px;"></iframe>
-                    <div class="media-info">
-                        <h3>ვიდეო 4</h3>
-                        <div class="reactions">
-                            <button class="reaction-btn" data-item="video4" data-reaction="like" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'video4', 'like')">
-                                <span class="emoji">❤️</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="video4" data-reaction="fire" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'video4', 'fire')">
-                                <span class="emoji">🔥</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="video4" data-reaction="cool" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'video4', 'cool')">
-                                <span class="emoji">😎</span>
-                                <span class="count">0</span>
-                            </button>
-                            <button class="reaction-btn" data-item="video4" data-reaction="wow" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'video4', 'wow')">
-                                <span class="emoji">🤩</span>
-                                <span class="count">0</span>
-                            </button>
-                        </div>
-                        <div class="specs">
-                            <span class="spec-badge">🎬 SWAP335</span>
-                            <span class="spec-badge">💨 Drift</span>
-                        </div>
+                    <div class="reaction-badge" data-item="interior2" data-reaction="cool" onclick="event.stopPropagation(); toggleReactionFirebase(this, 'interior2', 'cool')">
+                        <span class="reaction-emoji">😎</span>
+                        <span class="reaction-count">0</span>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="footer">
-        <div class="footer-content">
-            <p>SWAP335 © 2025 | Made with ❤️ for Speed</p>
+    <!-- Specifications Section -->
+    <section id="specs" class="section" style="background: #f5f5f5;">
+        <h2 class="section-title">ტექნიკური სპეციფიკაციები</h2>
+        
+        <div style="max-width: 1000px; margin: 0 auto; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 30px rgba(0,0,0,0.1);">
             
-            <div class="contact-section">
-                <h3>🌟 მსგავსი საიტის გაკეთება გსურთ?</h3>
-                <p>თუ გსურთ თქვენთვის ასეთი საიტის შექმნა, შემეხმიანეთ ინსტაგრამზე!</p>
+            <!-- Engine Section -->
+            <div style="border-bottom: 3px solid #1c69d4; padding: 30px; background: linear-gradient(135deg, #1c69d4 0%, #0a4a9e 100%); color: white;">
+                <h3 style="font-size: 1.8em; font-weight: 300; margin-bottom: 10px;">ძრავა</h3>
+                <p style="opacity: 0.9;">BMW N54B30 Twin-Turbo Inline-6</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0;">
+                <div style="padding: 25px; border-bottom: 1px solid #eee; border-right: 1px solid #eee;">
+                    <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">Engine Type</div>
+                    <div style="font-size: 1.1em; font-weight: 500; color: #262626;">Inline 6</div>
+                </div>
+                <div style="padding: 25px; border-bottom: 1px solid #eee;">
+                    <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">Number of Cylinders</div>
+                    <div style="font-size: 1.1em; font-weight: 500; color: #262626;">6</div>
+                </div>
+
+                <div style="padding: 25px; border-bottom: 1px solid #eee; border-right: 1px solid #eee;">
+                    <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">Engine Code</div>
+                    <div style="font-size: 1.1em; font-weight: 500; color: #262626;">N54B30</div>
+                </div>
+                <div style="padding: 25px; border-bottom: 1px solid #eee;">
+                    <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">Fuel Type</div>
+                    <div style="font-size: 1.1em; font-weight: 500; color: #262626;">Petrol</div>
+                </div>
+
+                <div style="padding: 25px; border-bottom: 1px solid #eee; border-right: 1px solid #eee;">
+                    <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">Fuel System</div>
+                    <div style="font-size: 1.1em; font-weight: 500; color: #262626;">Direct Injection</div>
+                </div>
+                <div style="padding: 25px; border-bottom: 1px solid #eee;">
+                    <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">Engine Alignment</div>
+                    <div style="font-size: 1.1em; font-weight: 500; color: #262626;">Longitudinal</div>
+                </div>
+
+                <div style="padding: 25px; border-bottom: 1px solid #eee; border-right: 1px solid #eee;">
+                    <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">Engine Position</div>
+                    <div style="font-size: 1.1em; font-weight: 500; color: #262626;">Front</div>
+                </div>
+                <div style="padding: 25px; border-bottom: 1px solid #eee;">
+                    <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">Engine Displacement</div>
+                    <div style="font-size: 1.1em; font-weight: 500; color: #262626;">2979 cm³ / 181.8 cu-in</div>
+                </div>
+
+                <div style="padding: 25px; border-bottom: 1px solid #eee; border-right: 1px solid #eee;">
+                    <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">Bore x Stroke</div>
+                    <div style="font-size: 1.1em; font-weight: 500; color: #262626;">84.0 x 89.6 mm</div>
+                </div>
+                <div style="padding: 25px; border-bottom: 1px solid #eee;">
+                    <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">Number of Valves</div>
+                    <div style="font-size: 1.1em; font-weight: 500; color: #262626;">24 Valves</div>
+                </div>
+
+                <div style="padding: 25px; border-bottom: 1px solid #eee; border-right: 1px solid #eee;">
+                    <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">Aspiration</div>
+                    <div style="font-size: 1.1em; font-weight: 500; color: #262626;">Bi-Turbo + Intercooler</div>
+                </div>
+                <div style="padding: 25px; border-bottom: 1px solid #eee;">
+                    <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">Compression Ratio</div>
+                    <div style="font-size: 1.1em; font-weight: 500; color: #262626;">10.2:1</div>
+                </div>
+
+                <div style="padding: 25px; border-bottom: 3px solid #1c69d4; border-right: 1px solid #eee; background: #f9f9f9;">
+                    <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">Horsepower</div>
+                    <div style="font-size: 1.3em; font-weight: 600; color: #1c69d4;">306 PS / 302 HP / 225 kW</div>
+                    <div style="font-size: 0.8em; color: #999; margin-top: 3px;">@ 5800 rpm</div>
+                </div>
+                <div style="padding: 25px; border-bottom: 3px solid #1c69d4; background: #f9f9f9;">
+                    <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">Maximum Torque</div>
+                    <div style="font-size: 1.3em; font-weight: 600; color: #1c69d4;">400 Nm / 295 lb-ft</div>
+                    <div style="font-size: 0.8em; color: #999; margin-top: 3px;">@ 1300-5000 rpm</div>
+                </div>
+            </div>
+
+            <!-- Drivetrain Section -->
+            <div style="border-bottom: 3px solid #1c69d4; padding: 30px; background: linear-gradient(135deg, #1c69d4 0%, #0a4a9e 100%); color: white; margin-top: 30px;">
+                <h3 style="font-size: 1.8em; font-weight: 300; margin-bottom: 10px;">ტრანსმისია და მძრავი ბორბლები</h3>
+                <p style="opacity: 0.9;">6-Speed Manual RWD</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0;">
+                <div style="padding: 25px; border-right: 1px solid #eee;">
+                    <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">Drive Wheels</div>
+                    <div style="font-size: 1.1em; font-weight: 500; color: #262626;">RWD (Rear Wheel Drive)</div>
+                </div>
+                <div style="padding: 25px;">
+                    <div style="font-size: 0.85em; color: #666; margin-bottom: 5px;">Transmission</div>
+                    <div style="font-size: 1.1em; font-weight: 500; color: #262626;">6-Speed Manual</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="videos" class="video-section">
+        <h2 class="section-title">ვიდეო გალერეა</h2>
+        <div class="video-grid">
+            <div class="video-card">
+                <iframe src="https://player.vimeo.com/video/1137361209?background=1" allow="autoplay; fullscreen"></iframe>
+                <div class="reactions-display" style="padding: 15px;">
+                    <div class="reaction-badge" data-item="video1" data-reaction="like" onclick="toggleReactionFirebase(this, 'video1', 'like')">
+                        <span class="reaction-emoji">❤️</span>
+                        <span class="reaction-count">0</span>
+                    </div>
+                    <div class="reaction-badge" data-item="video1" data-reaction="fire" onclick="toggleReactionFirebase(this, 'video1', 'fire')">
+                        <span class="reaction-emoji">🔥</span>
+                        <span class="reaction-count">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <iframe src="https://player.vimeo.com/video/1137361222?background=1" allow="autoplay; fullscreen"></iframe>
+                <div class="reactions-display" style="padding: 15px;">
+                    <div class="reaction-badge" data-item="video2" data-reaction="like" onclick="toggleReactionFirebase(this, 'video2', 'like')">
+                        <span class="reaction-emoji">❤️</span>
+                        <span class="reaction-count">0</span>
+                    </div>
+                    <div class="reaction-badge" data-item="video2" data-reaction="fire" onclick="toggleReactionFirebase(this, 'video2', 'fire')">
+                        <span class="reaction-emoji">🔥</span>
+                        <span class="reaction-count">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <iframe src="https://player.vimeo.com/video/1137361236?background=1" allow="autoplay; fullscreen"></iframe>
+                <div class="reactions-display" style="padding: 15px;">
+                    <div class="reaction-badge" data-item="video3" data-reaction="like" onclick="toggleReactionFirebase(this, 'video3', 'like')">
+                        <span class="reaction-emoji">❤️</span>
+                        <span class="reaction-count">0</span>
+                    </div>
+                    <div class="reaction-badge" data-item="video3" data-reaction="fire" onclick="toggleReactionFirebase(this, 'video3', 'fire')">
+                        <span class="reaction-emoji">🔥</span>
+                        <span class="reaction-count">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <iframe src="https://player.vimeo.com/video/1137361225?background=1" allow="autoplay; fullscreen"></iframe>
+                <div class="reactions-display" style="padding: 15px;">
+                    <div class="reaction-badge" data-item="video4" data-reaction="like" onclick="toggleReactionFirebase(this, 'video4', 'like')">
+                        <span class="reaction-emoji">❤️</span>
+                        <span class="reaction-count">0</span>
+                    </div>
+                    <div class="reaction-badge" data-item="video4" data-reaction="fire" onclick="toggleReactionFirebase(this, 'video4', 'fire')">
+                        <span class="reaction-emoji">🔥</span>
+                        <span class="reaction-count">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>SWAP335</h3>
+                <p>BMW E92 335i</p>
+                <p>3.0L Inline-6 Twin-Turbo</p>
+                <p>N54B30 Engine</p>
+                <p>302 HP / 400 Nm</p>
+            </div>
+            <div class="footer-section">
+                <h3>კონტაქტი</h3>
                 <a href="https://www.instagram.com/nika_kaxurashviili/" target="_blank" class="instagram-link">
-                    <svg class="instagram-icon" viewBox="0 0 24 24" fill="white">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
                         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                     </svg>
                     @nika_kaxurashviili
                 </a>
             </div>
-        </div>
-    </div>
-
-    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-        <div class="lightbox-content" onclick="event.stopPropagation()">
-            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-            <img id="lightbox-img" src="" alt="Full size" style="display:none;">
-            <video id="lightbox-video" controls style="display:none;">
-                <source src="" type="video/mp4">
-            </video>
-            <div class="video-controls" id="video-controls" style="display:none;">
-                <button class="control-btn" onclick="toggleMute()">🔊 ხმის ჩართვა/გამორთვა</button>
-                <button class="control-btn" onclick="togglePlay()">▶️ დაკვრა/პაუზა</button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function switchTab(tabName) {
-            const tabs = document.querySelectorAll('.tab-content');
-            const buttons = document.querySelectorAll('.tab-button');
-            
-            tabs.forEach(tab => tab.classList.remove('active'));
-            buttons.forEach(btn => btn.classList.remove('active'));
-            
-            document.getElementById(tabName).classList.add('active');
-            event.target.classList.add('active');
-        }
-
-        function openLightbox(type, src) {
-            const lightbox = document.getElementById('lightbox');
-            const img = document.getElementById('lightbox-img');
-            const video = document.getElementById('lightbox-video');
-            const controls = document.getElementById('video-controls');
-            
-            lightbox.classList.add('active');
-            
-            if (type === 'photo') {
-                img.src = src;
-                img.style.display = 'block';
-                video.style.display = 'none';
-                controls.style.display = 'none';
-            } else {
-                // For Vimeo videos, create iframe
-                const iframe = document.createElement('iframe');
-                iframe.src = src + '?autoplay=1';
-                iframe.style.width = '90vw';
-                iframe.style.height = '90vh';
-                iframe.style.maxWidth = '1200px';
-                iframe.style.border = 'none';
-                iframe.allow = 'autoplay; fullscreen; picture-in-picture';
-                
-                const container = document.querySelector('.lightbox-content');
-                container.innerHTML = '<span class="lightbox-close" onclick="closeLightbox()">&times;</span>';
-                container.appendChild(iframe);
-            }
-        }
-
-        function closeLightbox(event) {
-            if (event) event.stopPropagation();
-            const lightbox = document.getElementById('lightbox');
-            const container = document.querySelector('.lightbox-content');
-            
-            lightbox.classList.remove('active');
-            
-            // Reset content
-            setTimeout(() => {
-                container.innerHTML = `
-                    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-                    <img id="lightbox-img" src="" alt="Full size" style="display:none;">
-                    <video id="lightbox-video" controls style="display:none;">
-                        <source src="" type="video/mp4">
-                    </video>
-                    <div class="video-controls" id="video-controls" style="display:none;">
-                        <button class="control-btn" onclick="toggleMute()">🔊 ხმის ჩართვა/გამორთვა</button>
-                        <button class="control-btn" onclick="togglePlay()">▶️ დაკვრა/პაუზა</button>
-                    </div>
-                `;
-            }, 300);
-        }
-
-        function toggleMute() {
-            const video = document.getElementById('lightbox-video');
-            video.muted = !video.muted;
-        }
-
-        function togglePlay() {
-            const video = document.getElementById('lightbox-video');
-            if (video.paused) {
-                video.play();
-            } else {
-                video.pause();
-            }
-        }
-
-        // Close lightbox with ESC key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeLightbox();
-            }
-        });
-    </script>
-
-    <!-- Firebase SDK -->
-    <script type="module">
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { getDatabase, ref, onValue, set, get, runTransaction } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyA5gh-i4iP2HIuF1Z0-3P6RcNRyKoowom4",
-            authDomain: "swap335-26470.firebaseapp.com",
-            databaseURL: "https://swap335-26470-default-rtdb.firebaseio.com/",
-            projectId: "swap335-26470",
-            storageBucket: "swap335-26470.firebasestorage.app",
-            messagingSenderId: "648809747714",
-            appId: "1:648809747714:web:6a616db5e18f66c312de1b"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
-
-        // Get or create user ID
-        function getUserId() {
-            let userId = localStorage.getItem('swap335-userId');
-            if (!userId) {
-                userId = 'user_' + Math.random().toString(36).substr(2, 9) + Date.now();
-                localStorage.setItem('swap335-userId', userId);
-            }
-            return userId;
-        }
-
-        const currentUserId = getUserId();
-
-        // Load all reaction counts
-        const reactionsRef = ref(database, 'reactions');
-        onValue(reactionsRef, (snapshot) => {
-            const data = snapshot.val();
-            if (data) {
-                Object.keys(data).forEach(key => {
-                    const count = data[key] || 0;
-                    const [itemId, reactionType] = key.split('-');
-                    const buttons = document.querySelectorAll(`[data-item="${itemId}"][data-reaction="${reactionType}"]`);
-                    
-                    buttons.forEach(button => {
-                        const countElement = button.querySelector('.count');
-                        if (countElement) {
-                            countElement.textContent = count;
-                        }
-                    });
-                });
-            }
-        });
-
-        // Load user's active reactions
-        const userReactionsRef = ref(database, `userReactions`);
-        onValue(userReactionsRef, (snapshot) => {
-            const data = snapshot.val();
-            if (data) {
-                Object.keys(data).forEach(reactionKey => {
-                    const users = data[reactionKey];
-                    if (users && users[currentUserId]) {
-                        const [itemId, reactionType] = reactionKey.split('-');
-                        const buttons = document.querySelectorAll(`[data-item="${itemId}"][data-reaction="${reactionType}"]`);
-                        buttons.forEach(button => {
-                            button.classList.add('active');
-                        });
-                    }
-                });
-            }
-        });
-
-        // Toggle reaction function
-        window.toggleReactionFirebase = function(button, itemId, reactionType) {
-            const reactionKey = itemId + '-' + reactionType;
-            const reactionRef = ref(database, `reactions/${reactionKey}`);
-            const userReactionRef = ref(database, `userReactions/${reactionKey}/${currentUserId}`);
-
-            get(userReactionRef).then((snapshot) => {
-                const hasReacted = snapshot.val();
-                
-                if (hasReacted) {
-                    // Remove reaction
-                    set(userReactionRef, null);
-                    runTransaction(reactionRef, (current) => {
-                        return Math.max(0, (current || 0) - 1);
-                    }).then(() => {
-                        button.classList.remove('active');
-                    });
-                } else {
-                    // Add reaction
-                    set(userReactionRef, true);
-                    runTransaction(reactionRef, (current) => {
-                        return (current || 0) + 1;
-                    }).then(() => {
-                        button.classList.add('active');
-                    });
-                }
-            });
-        };
-    </script>
-</body>
-</html>
+            <div class="footer-section">
+                <h3>მსგავსი საიტის შექმნა</h3>
+                <p>თუ გსურთ თქვენთვის ასეთი საიტის შექმნა
